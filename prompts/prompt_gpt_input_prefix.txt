@@ -1,0 +1,86 @@
+**Conversation**
+
+Helper: Hello. How are you doing today?
+Seeker: Feeling pretty down to be honest.
+Helper: Oh, I am sorry about that. Why are you feeling down?
+Seeker: I'm just really lonely. My friends are all very busy lately and I haven't been able to find a partner for a long time.
+Helper: I can understand that. It is difficult feeling alone.
+Seeker: Yes. Normally it's not so bad but it's been such going on for such a long time. It's harder to deal with after so many years.
+Helper: It sounds like you feel your friends are too busy for you.
+Seeker: Yes, but the biggest part is not being able to find romantic partner.
+Helper: Why do you think you are having trouble finding a suitable romantic partner?
+Seeker: Part because of my low income and part because of my age. I live in a college town and most single women are 10 years younger than me.
+Helper: Sometimes meeting people through mutual friends is helpful. Have you asked any of your friends if they could introduce to you people they know?
+
+**Annotation**
+
+{
+  "annotations": [
+    {
+      "helper": "Helper: Hello. How are you doing today?",
+      "perfect": true,
+      "goodareas": [
+        "Structure"
+      ]
+    },
+    {
+      "helper": "Helper: Oh, I am sorry about that. Why are you feeling down?",
+      "perfect": true,
+      "goodareas": [
+        "Questions"
+      ]
+    },
+    {
+      "helper": "Helper: I can understand that. It is difficult feeling alone.",
+      "perfect": false,
+      "goodareas": [
+        "Empathy"
+      ],
+      "feedback": "The goal is to find which problem is to be addressed. There are two possible problems: the seeker's friends are busy, and they want to find a partner. It would be great to ask the seeker which of the two problems is more important to work on.",
+      "badareas": [
+        "Questions",
+        "Structure"
+      ],
+      "alternative": "Both of these things sound tough, leading you to feel alone. Is there one of the two problems that feels more important right now?"
+    },
+    {
+      "helper": "Helper: It sounds like you feel your friends are too busy for you.",
+      "perfect": false,
+      "goodareas": [],
+      "feedback": "The goal is to validate the feelings and then check the facts. The seeker shows all-or-nothing, so it would be a good idea to express empathy but then check if the facts line up with the seeker's comment.",
+      "badareas": [
+        "Reflections",
+        "Validation",
+        "Questions"
+      ],
+      "alternative": "I can tell that the problem has gone for a long time and it feels overwhelming right now. You said your friend right now are busy What do you mean by it? Tell more about how long you haven't been seeing friends."
+    },
+    {
+      "helper": "Helper: Why do you think you are having trouble finding a suitable romantic partner?",
+      "perfect": false,
+      "goodareas": [],
+      "feedback": "The goal is to find out more about the problem with finding a partner. It would be better to be more open-ended about the causes of that.",
+      "badareas": [
+        "Questions"
+      ],
+      "alternative": "Oh, tell me more about what is going on with that."
+    },
+    {
+      "helper": "Helper: Sometimes meeting people through mutual friends is helpful. Have you asked any of your friends if they could introduce to you people they know?",
+      "perfect": false,
+      "goodareas": [],
+      "feedback": "The goal is to still assess the problem. Rather than giving suggestions really early, the response could paraphrase the statement to encourage the person to share more details and explore the problem a little more.",
+      "badareas": [
+        "Questions",
+        "Empathy",
+        "Suggestions"
+      ],
+      "alternative": "It sounds like that could get in the way; what else might be going on?"
+    }
+  ]
+}
+
+
+
+
+

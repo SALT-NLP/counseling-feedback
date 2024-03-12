@@ -1,0 +1,106 @@
+In emotional support conversations, two primary roles exist: the helper (individual providing support) and the seeker (individual seeking support).
+Your task is to provide feedback to the helper on these conversations.
+
+## Instructions
+
+Annotate helper’s responses. Give your feedback on all the helper’s responses.
+
+There are two options for annotating the helper’s responses:
+
+Option I
+If you believe the response is very good, you can annotate it by setting perfect key to true.
+Please highlight good areas in which the helper excelled.
+
+Option II
+Most of the helper’s responses could be improved with your feedback, you can annotate it by setting perfect key to false.
+If there are any particularly good areas in the responses (even though the response has mistakes related to other areas), please highlight them.
+The feedback should have three different parts. Give constructive feedback to the helper consisting of the following three parts A, B and C:
+
+### Part A (feedback)
+What should the goal of this response be? What could I [helper] improve to better align my response with this goal? Always start with "The goal is to" and then specify the goal for this part of the conversation.
+Think about the context, what is the most important goal in this part of the conversation? Potential goals could be defining the seeker's emotions or a problem, identifying possible causes of the seeker's problems, helping the seeker identify helpful changes, helping the seeker understand what thoughts they have that do not help them, etc. Please formulate the goals yourself, if there is more than one goal, pick the most important one.
+
+[Important] Structure your response in the following way:
+Start with “The goal is to,” then specify the goal for this part of the conversation.
+Then, say what could be improved to achieve this goal. Please use third-person statements “it would be good to”, “it might be better to”, “it would be great to”, etc. (This is to ensure good feedback delivery)
+
+### Part B (areas)
+What areas for improvement do you want to highlight?
+Identify the categories of improvement from the list provided (see Appendix:Areas for improvement). The list contains the areas in which novice helpers struggle. Please study it in detail to understand each category.
+
+### Part C (alternative)
+Give a potential alternative response I [helper] could have given.
+Offer more suitable responses, the helper could have used in the context of the conversation in order to achieve the goal specified in part A.
+
+While annotating, think about the whole context of the helper’s response. What happened earlier in this conversation, and how does the helper’s response fit into this context?
+
+**Important Language Considerations**
+Do not say “the helper did.., etc. The feedback should always be delivered using phrases like “it might be”, “it would be better”, “... would be more effective”, etc. Please try not to repeat the same phrase in one annotation.
+Always refer to the seeker using gender-neutral terms like "they" unless their gender is explicitly stated.
+Ensure your feedback is respectful, objective, and constructive. We do not want to judge the helper but to help them master their skills further.
+While giving feedback, please feel free to quote parts of the dialogue using “”, if you find it helpful to refer to what the seeker or helper said.
+
+## Appendix: Areas for improvement
+
+### Reflections
+- Not reflecting, drawing conclusions from the helper’s experience without listening to what the seeker is saying and checking it out with them
+- Making assumptions beyond what was said
+- Copying the seeker's words’ exactly
+- Stating feelings too definitely rather than tentatively (e.g. you obviously feel X vs. I wonder if you feel X)
+- Becoming repetitive, not varying the format of restatements (e.g. I’m hearing you feel sad, I’m hearing you feel anxious, I’m hearing you…)
+- Labeling feelings inaccurately
+- Not capturing the most salient feeling
+- Reflecting on many feelings at the same time
+- Being judgmental
+- Focusing on the feelings of others and not the seeker
+- Reflecting when the seeker is resistant to expressing feelings and reflection might add more pressure
+
+### Questions
+- Making questions too focused in situations in which they should be more open-ended
+- Trying to cover everything instead of focusing on one aspect
+- Asking questions without a clear intention/goal
+- Not encouraging expression of feelings
+- Not exploring the details of the situation the seeker is coming with
+- Not asking the seeker to check the facts (tell me what data you have that supports that”, do you have any evidence that you'd be X if you did Y?)
+- Asking questions without empathy
+- Asking lengthy or multiple questions at once
+- Turning the attention to other people instead of the seeker (i.e., asking what person X did, instead of asking how the seeker felt about X’s behavior)
+- Asking too many closed-questions interviewing instead of exploring
+
+
+### Suggestions
+- Giving too much or premature advice, answers, or solutions
+- Telling people what to do, giving direct advice “you should”
+- Imposing beliefs or personal values on seekers
+- Trying to debate with the seeker and convince them of the helper’s point of view
+
+### Validation
+- Not letting the seeker know that their feelings are normal
+- Validating invalid (e.g., validating opinions or seeker’s biases)
+- Helper not being there, paying attention to what the seeker brings to the conversation
+
+### Self-disclosure
+- Not turning the focus back to the seeker immediately
+- Making self-disclosure too long or too complex
+- Disclosing too much information
+- Talking too much and not letting the seeker talk more
+
+### Empathy
+- [Empathetic Emotional Reactions] Not expressing warmth, compassion, concern, or similar feelings towards the seeker in situations in which it would be appropriate
+- [Empathetic Interpretations] Not communicating an understanding of the seeker's experiences and feelings  in situations in which it would be appropriate
+- [Empathetic Explorations] Not making an attempt to explore the seeker's experiences and feelings in situations in which it would be appropriate
+- Expressing empathy but without maintaining a professional attitude
+- Expressing sympathy instead of empathy
+
+### Professionalism
+- Overusing slang
+- Being overly professional and formal, which results in robotic-style conversations
+- Using vocabulary that expresses too much closeness
+
+### Structure
+- [beginning] Not establishing a collaborative agenda and a friendly emotional rapport
+- [middle] Having too many topics on the table at the same time, not focusing on the main problem (“keep it simple”)
+- [end] Not summarizing what the person is going to take away from the conversation
+- [end] Lack of clear, actionable items or insights for the seeker after the conversation
+
+Give feedback to all helper's responses. Use professional and friendly language when giving feedback. Focus on what is most beneficial to hear.
