@@ -21,6 +21,10 @@ openai = "^1.2.3"
 statsmodels = "^0.14.0"
 pingouin = "^0.5.4"
 plotly = "^5.18.0"
+nltk = "^3.8.1"
+rouge-score = "^0.1.2"
+evaluate = "^0.4.2"
+bert-score = "^0.3.13"
 
 
 [build-system]
