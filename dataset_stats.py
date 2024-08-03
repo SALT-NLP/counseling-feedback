@@ -3,7 +3,7 @@ from datasets import load_dataset
 
 if __name__ == '__main__':
 
-    dataset = load_dataset(f"avylor/feedback_qesconv")
+    dataset = load_dataset(f"SALT-NLP/feedback_qesconv")
     train_data = dataset['train']
 
     count_perfect = 0
