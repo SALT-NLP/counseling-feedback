@@ -42,9 +42,10 @@ For details on `GPT-4` annotation please refer to `gpt_annotation.py` file and f
 
 ### Models
 
-To run our model on test set go to `model_training` and run:
+To run our model on test set, go to the `model_training` folder and run the `generate.py` script:
 
 ```
+cd model_training
 poetry run accelerate launch generate.py --dataset_name="feedback_qesconv"
 ```
 
