@@ -18,7 +18,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 @dataclass
 class ScriptArguments:
-    model_name: Optional[str] = field(default="meta-llama/Llama-2-13b-chat-hf", metadata={"help": "the model name"})
+    model_name: Optional[str] = field(default="meta-llama/Meta-Llama-3.1-8B-Instruct", metadata={"help": "the model name"})
     packing: Optional[bool] = field(default=False, metadata={"help": "whether to use packing for SFTTrainer"})
     dataset_name: Optional[str] = field(default="feedback_qesconv", metadata={"help": "dataset name"})
 

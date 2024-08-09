@@ -25,6 +25,7 @@ nltk = "^3.8.1"
 rouge-score = "^0.1.2"
 evaluate = "^0.4.2"
 bert-score = "^0.3.13"
+peft = "^0.12.0"
 
 
 [build-system]

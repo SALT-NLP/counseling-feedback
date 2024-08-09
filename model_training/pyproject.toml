@@ -12,6 +12,7 @@ bitsandbytes = "^0.41.3.post2"
 peft = "^0.7.1"
 scipy = "^1.11.4"
 wandb = "^0.16.1"
+torch = "^2.4.0"
 
 
 [build-system]
