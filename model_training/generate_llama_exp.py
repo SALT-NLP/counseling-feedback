@@ -45,8 +45,9 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 @dataclass
 class ScriptArguments:
-    model_name: Optional[str] = field(default="meta-llama/Llama-2-13b-chat-hf", metadata={"help": "the model name"})
-    packing: Optional[bool] = field(default=False, metadata={"help": "whether to use packing for SFTTrainer"})
+    # model_name: Optional[str] = field(default="meta-llama/Llama-2-13b-chat-hf", metadata={"help": "the model name"})
+    model_name: Optional[str] = field(default="meta-llama/Meta-Llama-3.1-8B-Instruct", metadata={"help": "the model name"})
+    packing: Optional[bool] = field(default=True, metadata={"help": "whether to use packing for SFTTrainer"})
     start_index: Optional[int] = field(default=0, metadata={"help": "start index"})
     dataset_name: Optional[str] = field(default="feedback_qesconv", metadata={"help": "dataset name"})
     threshold: Optional[int] = field(default=0.5, metadata={"help": "threshold"})
@@ -99,8 +100,33 @@ with torch.no_grad():
             probabilities = softmax(last_token_logits, dim=0)
             max_prob_index = torch.argmax(probabilities).item()
             predicted_token = tokenizer.convert_ids_to_tokens(max_prob_index)
+            
+            # ===== OLD CODE
             t_index = tokenizer.convert_tokens_to_ids('▁true')
-            probability_of_t = probabilities[t_index].item()
+            print(f"_t_index: {t_index}")
+            print(f"probabilities shape: {probabilities.shape}")
+
+            # ==== OLD LINE THROWING ERROR
+            # probability_of_t = probabilities[t_index].item()
+                
+            # ===== NEW CODE WITH MORE ERROR HANDLING
+            # Get the token ID for 'true' (without the special character)
+            t_index = tokenizer.convert_tokens_to_ids('true')
+            print(f"t_index: {t_index}")
+
+            # Check if the token exists in the vocabulary
+            if t_index == tokenizer.unk_token_id:
+                print("Warning: 'true' token not found in vocabulary")
+                probability_of_t = 0  # or handle this case as appropriate for your use case
+            else:
+                # Make sure t_index is within the range of the probabilities tensor
+                if t_index < len(probabilities):
+                    probability_of_t = probabilities[t_index].item()
+                else:
+                    print(f"Warning: t_index ({t_index}) is out of range for probabilities tensor (length {len(probabilities)})")
+                    probability_of_t = 0  # or handle this case as appropriate for your use case
+
+            print(f"Probability of 'true': {probability_of_t}")
 
             threshold = script_args.threshold
             if probability_of_t > threshold:
@@ -121,11 +147,13 @@ with torch.no_grad():
             decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
             feedback_only = extract_output(decoded_output)
 
+            print("----- feedback only: ", feedback_only)
 
             attempt = 0
             while attempt < MAX_TRIES:
                 try:
                     loaded = json.loads(feedback_only)
+                    print("------- loaded feedback: ", loaded)
                     ann_check(loaded)
 
                     if loaded['perfect']:
