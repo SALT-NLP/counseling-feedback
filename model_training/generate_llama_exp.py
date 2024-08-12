@@ -76,8 +76,8 @@ model.eval()
 def extract_output(s):
     start_index = s.find("Response:")
     start_index += len("Response:")
-    extracted_string = s[start_index:]#.strip()
-    return extracted_string
+    extracted_string = s[start_index:].strip()
+    return extracted_string.rstrip('</s>')  # Remove the </s> token
 
 with torch.no_grad():
     generations = []
@@ -162,8 +162,10 @@ with torch.no_grad():
                     else:
                         splitted = dataset['test'][ind]['text'].split('Response:')[0].split('\n')
                         splitted = splitted[:-2]
+                        print("----- splitted before alt: ", splitted)
                         splitted[-1] = f'Helper: {loaded["alternative"]}'
                         new_prompt = '\n'.join(splitted) + '\n\n### Response:' + json.dumps({"perfect": label})[:-1]
+                        print("----- new prompt: ", new_prompt)
                         new_prompt_encoded = tokenizer(new_prompt, add_special_tokens=False, return_tensors="pt").to(model.device)
                         improved_output = model.generate(**new_prompt_encoded, max_new_tokens=600, do_sample=True, temperature=0.8, eos_token_id=tokenizer.eos_token_id,
                                     pad_token_id=tokenizer.pad_token_id,  stopping_criteria=StoppingCriteriaList([StopOnTokens()]))
@@ -171,8 +173,11 @@ with torch.no_grad():
 
                         try:
                             improved_feedback_only = extract_output(decoded_improved_output)
+                            print(" ======= improved_feedback_only ", improved_feedback_only)
                             new_loaded = json.loads(improved_feedback_only)
+                            print(" ======= new_loaded", new_loaded)
                             ann_check(new_loaded)
+                            print(" ======= ann_check(new_loaded) passed!")
                             loaded["improved"] = new_loaded
                         except:
                             raise Exception("Failed to load alternative")
