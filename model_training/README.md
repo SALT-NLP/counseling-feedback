@@ -30,12 +30,12 @@ poetry run accelerate launch generate_llama_exp.py \
 --output_dir="<SFT PATH>" \
 --bf16=True \
 --dataset_name="feedback_qesconv_dpo_pre" \
---start_index=0 '
+--start_index=0
 
 poetry run accelerate launch generate_llama_exp_probs.py \
 --output_dir="<SFT PATH>" \
 --bf16=True \
---file_name="exp/feedback_qesconv_dpo_pre_sft_model_generations_0.json"
+--file_name="exp/feedback_qesconv_dpo_pre_<SFT PATH>_generations_0.json"
 
 ```
 
@@ -44,7 +44,7 @@ poetry run accelerate launch generate_llama_exp_probs.py \
 
 ```
 poetry run accelerate launch dpo_llama.py  \
---model_name_or_path="<SFT PATH/final_merged_checkpoint>"
+--model_name_or_path="<SFT PATH/final_merged_checkpoint>" \
 --output_dir="<DPO PATH>" \
 
 ```

@@ -7,7 +7,7 @@ from datasets import Dataset, load_dataset
 from peft import LoraConfig, AutoPeftModelForCausalLM
 from transformers import AutoModelForCausalLM, AutoTokenizer, HfArgumentParser, TrainingArguments, BitsAndBytesConfig
 
-from trl import DPOTrainer
+from trl import DPOTrainer, DPOConfig
 
 from transformers import set_seed
 set_seed(42)
@@ -21,15 +21,15 @@ class ScriptArguments:
     """
     The arguments for the DPO training script.
     """
-
-    # data parameters
-    beta: Optional[float] = field(default=0.5, metadata={"help": "the beta parameter for DPO loss"})
-
-    # training parameters
-    model_name_or_path: Optional[str] = field(
-        default="", # set
+    model_name_or_path: str = field(
         metadata={"help": "the location of the SFT model name or path"},
     )
+    output_dir: str = field(
+            metadata={"help": "the output directory"}
+    )
+    # data parameters
+    beta: Optional[float] = field(default=0.5, metadata={"help": "the beta parameter for DPO loss"})
+    # training parameters
     learning_rate: Optional[float] = field(default=5e-6, metadata={"help": "optimizer learning rate"})
     lr_scheduler_type: Optional[str] = field(default="cosine", metadata={"help": "the lr scheduler type"})
     warmup_steps: Optional[int] = field(default=10, metadata={"help": "the number of warmup steps"})
@@ -56,7 +56,6 @@ class ScriptArguments:
     save_steps: Optional[int] = field(default=50, metadata={"help": "the saving frequency"})
     eval_steps: Optional[int] = field(default=10, metadata={"help": "the evaluation frequency"})
 
-    output_dir: Optional[str] = field(default="", metadata={"help": "the output directory"}) # set
     log_freq: Optional[int] = field(default=1, metadata={"help": "the logging frequency"})
 
     report_to: Optional[str] = field(
@@ -108,14 +107,15 @@ if __name__ == "__main__":
         torch_dtype=torch.float16,
         load_in_4bit=True,
     )
-    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-hf")
+    # tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-hf")
+    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3.1-8B-Instruct")
     tokenizer.pad_token = tokenizer.eos_token
 
     train_dataset = dataset['train']
     eval_dataset = dataset['test']
 
     # 4. initialize training arguments:
-    training_args = TrainingArguments(
+    dpo_config = DPOConfig(
         per_device_train_batch_size=script_args.per_device_train_batch_size,
         per_device_eval_batch_size=script_args.per_device_eval_batch_size,
         evaluation_strategy="steps",
@@ -134,6 +134,10 @@ if __name__ == "__main__":
         bf16=True,
         remove_unused_columns=False,
         run_name="dpo_model",
+        # DPO-specific parameters
+        beta=script_args.beta,
+        max_prompt_length=script_args.max_prompt_length,
+        max_length=script_args.max_length,
     )
 
     peft_config = LoraConfig(
@@ -157,14 +161,11 @@ if __name__ == "__main__":
     dpo_trainer = DPOTrainer(
         model,
         model_ref,
-        args=training_args,
-        beta=script_args.beta,
+        args=dpo_config,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         tokenizer=tokenizer,
         peft_config=peft_config,
-        max_prompt_length=script_args.max_prompt_length,
-        max_length=script_args.max_length,
     )
 
     # 6. train
