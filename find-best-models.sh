@@ -4,7 +4,11 @@
 
 # Directory pattern to search for
 # MODEL_PREFIX="roberta-Validation-goodareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-wdbkc6pj-*"
-MODEL_PREFIX="roberta-Self-disclosure-badareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-fk58yziy-*"
+# MODEL_PREFIX="roberta-Self-disclosure-badareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-fk58yziy-*"
+# MODEL_PREFIX="roberta-Reflections-badareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-g0jrsbik-*"
+# MODEL_PREFIX="roberta-Suggestions-goodareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-6xtokquj-*"
+# MODEL_PREFIX="roberta-Empathy-badareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-bv3pqx8y-*"
+MODEL_PREFIX="roberta-Validation-badareas-eval_FeedbackESConv5pp_CARE10pp-sweeps-best-n7q0ocbx-*"
 
 # Function to extract the highest eval_f1 score from a trainer_state.json file
 function extract_highest_eval_f1() {
