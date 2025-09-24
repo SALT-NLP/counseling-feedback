@@ -8,33 +8,31 @@
 
 You can find the dataset here: [FeedbackESConv](https://huggingface.co/datasets/SALT-NLP/feedback_qesconv)
 
-
 To see FeedbackESConv dataset statistics (Table 2), run:
+
 ```
 poetry run python dataset_stats.py
-``` 
+```
 
 Our dataset builds on ESConv dataset - https://github.com/thu-coai/Emotional-Support-Conversation
 
 ```
 @inproceedings{liu-etal-2021-towards,
   title={Towards Emotional Support Dialog Systems},
-  author={Liu, Siyang  and 
-    Zheng, Chujie  and 
-    Demasi, Orianna  and 
-    Sabour, Sahand  and 
-    Li, Yu  and 
-    Yu, Zhou  and 
-    Jiang, Yong  and 
+  author={Liu, Siyang  and
+    Zheng, Chujie  and
+    Demasi, Orianna  and
+    Sabour, Sahand  and
+    Li, Yu  and
+    Yu, Zhou  and
+    Jiang, Yong  and
     Huang, Minlie},
   booktitle={ACL},
   year={2021}
 }
 ```
 
-
 ### GPT-4 based pre-annotation
-
 
 You can find prompt for GPT-4 based annotation in `prompts` directory. Instruction details based on the feedback framework can be found in `prompt_gpt_instruction.txt` whereas exemplars are in `prompt_gpt_input_prefixt.txt`.
 
@@ -50,6 +48,7 @@ poetry run accelerate launch generate.py --dataset_name="feedback_qesconv"
 ```
 
 Example generation:
+
 ```
 ### Input:
 Seeker: I'm okay i guess. How are you?
@@ -77,15 +76,43 @@ s great that you're seeing a counselor regularly. Can you tell me more about the
 ```
 
 #### Risk disclosure
-The model is experimental and has been evaluated only on a set of in-domain emotional support conversations (ESConv). Use with caution and at your own risk. The generated feedback can be inappropriate and it is therefore important to treat model-generated advice only as potential guidance and discard it if necessary. Any potential user should be aware of the limitations and risks associated with using the model. 
+
+The model is experimental and has been evaluated only on a set of in-domain emotional support conversations (ESConv). Use with caution and at your own risk. The generated feedback can be inappropriate and it is therefore important to treat model-generated advice only as potential guidance and discard it if necessary. Any potential user should be aware of the limitations and risks associated with using the model.
 This model was created for research purposes and should not be regarded as a substitute for expert feedback. The model behaviour should be closely monitored to determine its suitability and detect potential problematic behaviours.
 
 To reproduce model comparison plot (Figure 3) run:
+
 ```
 poetry run python plot_scores.py
 ```
 
 To reproduce model training please refer to details in README.md in `model_training` directory.
 
+## Dev Setup Guide
 
+1. install poetry:
+   `curl -sSL https://install.python-poetry.org | python3 -`
 
+   check its installed with `poetry --version`
+
+   add to path if needed with `export PATH="$HOME/.local/bin:$PATH"`
+
+2. create and activate venv:
+   `poetry env use python3.11`
+
+   activate with
+   `poetry env activate`
+
+3. install dependencies:
+   `poetry install`
+
+---
+
+- if package is missing download manually:
+  `poetry add ___`
+
+- you can check up on poetry env via:
+  `poetry env info`
+
+- configure compute paramaters:
+  `poetry run accelerate config`

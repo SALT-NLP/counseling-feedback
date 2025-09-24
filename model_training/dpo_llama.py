@@ -75,6 +75,9 @@ class ScriptArguments:
         },
     )
 
+# additions for debugging purposes
+MODEL_NAME = "meta-llama/Llama-3.1-8B"
+
 
 if __name__ == "__main__":
     parser = HfArgumentParser(ScriptArguments)
@@ -88,9 +91,9 @@ if __name__ == "__main__":
     dataset['test'] = dataset['test'].map(lambda x: {'prompt': f'<s>{x["prompt"]}', 'chosen': f'{x["chosen"]}</s>', 'rejected': f'{x["rejected"]}</s>'})
 
     model = AutoModelForCausalLM.from_pretrained(
-        script_args.model_name_or_path,
+        MODEL_NAME,
         low_cpu_mem_usage=True,
-        torch_dtype=torch.float16,
+        torch_dtype=torch.bfloat16,
         load_in_4bit=True,
     )
     model.config.use_cache = False
@@ -102,13 +105,13 @@ if __name__ == "__main__":
         ]
 
     model_ref = AutoModelForCausalLM.from_pretrained(
-        script_args.model_name_or_path,
+        MODEL_NAME,
         low_cpu_mem_usage=True,
-        torch_dtype=torch.float16,
+        torch_dtype=torch.bfloat16,
         load_in_4bit=True,
     )
     # tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-hf")
-    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3.1-8B-Instruct")
+    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B")
     tokenizer.pad_token = tokenizer.eos_token
 
     train_dataset = dataset['train']
@@ -131,7 +134,7 @@ if __name__ == "__main__":
         lr_scheduler_type=script_args.lr_scheduler_type,
         warmup_steps=script_args.warmup_steps,
         optim=script_args.optimizer_type,
-        bf16=True,
+        bf16=True, 
         remove_unused_columns=False,
         run_name="dpo_model",
         # DPO-specific parameters
@@ -148,10 +151,10 @@ if __name__ == "__main__":
             "q_proj",
             "v_proj",
             "k_proj",
-            "out_proj",
-            "fc_in",
-            "fc_out",
-            "wte",
+            "o_proj",
+            "gate_proj",
+            "up_proj",
+            "down_proj",
         ],
         bias="none",
         task_type="CAUSAL_LM",

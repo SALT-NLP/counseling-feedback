@@ -30,7 +30,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 @dataclass
 class ScriptArguments:
-    model_name: Optional[str] = field(default="meta-llama/Meta-Llama-3.1-8B-Instruct", metadata={"help": "the model name"})
+    model_name: Optional[str] = field(default="meta-llama/Meta-Llama-3.1-8B", metadata={"help": "the model name"})
     file_name: Optional[str] = field(default="", metadata={"help": "file name"})
 
 parser = HfArgumentParser((ScriptArguments, TrainingArguments))

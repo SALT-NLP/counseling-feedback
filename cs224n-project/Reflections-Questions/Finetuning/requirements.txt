@@ -1,0 +1,10 @@
+evaluate
+torch
+tensorboard
+setuptools<71.0.0
+transformers
+datasets
+tokenizers
+accelerate
+hf-transfer
+huggingface_hub
