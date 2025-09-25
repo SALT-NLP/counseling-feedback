@@ -246,6 +246,10 @@ def generate_samples(
                         print(f'### Attempt {attempt} Failed to parse output as json\n\n')
                         attempt += 1
 
+            if len(outputs) == 0:
+                print(f"⚠️ ⚠️ ⚠️ Skipping index {ind} due to no valid outputs. ⚠️ ⚠️ ⚠️")
+                continue
+            
             generations.append({
                 "prompt": dataset['test'][ind]['text'],
                 "helper_index": dataset['test'][ind]["helper_index"],
