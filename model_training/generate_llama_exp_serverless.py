@@ -61,7 +61,7 @@ MAX_TRIES = 5
     gpu="H100",
     timeout=86400,  # 24 hours
     volumes={"/root/model_training/models": MODEL_VOLUME},
-    secrets=[modal.Secret.from_name("huggingface-secret")]
+    secrets=[modal.Secret.from_name("huggingface")]
 )
 def generate_samples(
     output_dir: str = "/root/model_training/models/output",
@@ -81,7 +81,7 @@ def generate_samples(
     torch.manual_seed(42)
 
     # Get HF token from Modal secret
-    access_token = os.environ.get("HUGGINGFACE_TOKEN")
+    access_token = os.environ.get("HF_TOKEN")
 
     # Set environment variables
     os.environ["TOKENIZERS_PARALLELISM"] = "false"

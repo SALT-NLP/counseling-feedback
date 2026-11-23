@@ -72,7 +72,7 @@ class ScriptArguments:
     gpu="H100",
     timeout=86400,  # 24 hours
     volumes={"/root/model_training/models": MODEL_VOLUME},
-    secrets=[modal.Secret.from_name("huggingface-secret")]  # Assumes HF token is stored as secret
+    secrets=[modal.Secret.from_name("huggingface")]  # Assumes HF token is stored as secret
 )
 def train_llama_model(
     model_name: str = "meta-llama/Meta-Llama-3.1-8B-Instruct",
@@ -105,7 +105,7 @@ def train_llama_model(
     set_seed(42)
 
     # Get HF token from Modal secret
-    access_token = os.environ.get("HUGGINGFACE_TOKEN")
+    access_token = os.environ.get("HF_TOKEN")
 
     # Set environment variables
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
